@@ -1,0 +1,59 @@
+{
+  "name": "fpts-import-helper",
+  "displayName": "fp-ts Import Helper",
+  "description": "Automatically aliases fp-ts module imports to abbreviations",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "author": {
+    "name": "Eoin \"Silent Echo\" Bathurst",
+    "email": "silent@silentecho.eu"
+  },
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "typescript",
+        "extensions": [
+          ".ts",
+          ".tsx"
+        ],
+        "aliases": [
+          "TypeScript",
+          "ts",
+          "typescript"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "pnpm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "pnpm run compile && pnpm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "20.2.5",
+    "@types/vscode": "^1.80.0",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "@vscode/test-electron": "^2.3.3",
+    "eslint": "^8.45.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "fp-ts": "^2.16.0"
+  }
+}
