@@ -2,23 +2,8 @@ import * as vscode from "vscode";
 
 import {
   array as A,
-  either as E,
-  eq as Eq,
-  date as FDate,
-  set as FSet,
-  map as M,
-  nonEmptyArray as NEA,
-  option as O,
-  ord as Ord,
   record as R,
-  readonlyArray as RA,
-  readonlyNonEmptyArray as RNEA,
-  state as S,
-  string as Str,
-  task as T,
-  taskEither as TE,
-  taskOption as TO,
-  function as f,
+  function as f
 } from "fp-ts";
 
 const dict = {
@@ -27,7 +12,8 @@ const dict = {
   T: "task",
   TE: "taskEither",
   TO: "taskOption",
-  O: "option",
+  O: "option",FRandom: "random",
+  N: "number",
   E: "either",
   A: "array",
   R: "record",
