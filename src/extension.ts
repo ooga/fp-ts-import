@@ -12,7 +12,8 @@ const dict = {
   T: "task",
   TE: "taskEither",
   TO: "taskOption",
-  O: "option",FRandom: "random",
+  O: "option",
+  FRandom: "random",
   N: "number",
   E: "either",
   A: "array",
@@ -30,6 +31,9 @@ const dict = {
   These: "these",
 };
 export function activate(context: vscode.ExtensionContext) {
+  const importFormat = vscode.workspace
+    .getConfiguration("fpts-import-helper")
+    .get("importFormat");
   const completion = vscode.languages.registerCompletionItemProvider(
     "typescript",
     {
@@ -47,7 +51,9 @@ export function activate(context: vscode.ExtensionContext) {
                 new vscode.Position(0, 0),
                 new vscode.Position(0, 0)
               ),
-              `import { ${dict[mod]} as ${mod} } from "fp-ts";\n`
+              importFormat === "module"
+                ? `import * as ${mod} from "fp-ts/${capitalize(dict[mod])}";\n`
+                : `import { ${dict[mod]} as ${mod} } from "fp-ts";\n`
             ),
           ];
           completion.kind = vscode.CompletionItemKind.Module;
@@ -71,4 +77,8 @@ export function activate(context: vscode.ExtensionContext) {
   );
 
   context.subscriptions.push(completion);
+}
+
+function capitalize(string: string) {
+  return string[0].toUpperCase() + string.slice(1);
 }

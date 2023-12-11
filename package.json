@@ -17,6 +17,23 @@
   "activationEvents": [],
   "main": "./out/main.js",
   "contributes": {
+    "configuration": {
+      "title": "fp-ts Import Helper",
+      "properties": {
+        "fpts-import-helper.importFormat": {
+          "type": "string",
+          "default": "module",
+          "enum": [
+            "root",
+            "module"
+          ],
+          "enumDescriptions": [
+            "Import from root (eg: import { Array as A } from \"fp-ts\";)",
+            "Import from module (eg: import * as A from \"fp-ts/Array\";)"
+          ]
+        }
+      }
+    },
     "languages": [
       {
         "id": "typescript",
