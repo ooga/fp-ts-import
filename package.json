@@ -13,7 +13,7 @@
     "name": "Eoin \"Silent Echo\" Bathurst",
     "email": "silent@silentecho.eu"
   },
-  "publisher": "silentechogm",
+  "publisher": "ooga",
   "activationEvents": [],
   "main": "./out/main.js",
   "contributes": {
