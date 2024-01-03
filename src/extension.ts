@@ -1,10 +1,8 @@
 import * as vscode from "vscode";
 
-import {
-  array as A,
-  record as R,
-  function as f
-} from "fp-ts";
+import * as A from "fp-ts/Array";
+import * as R from "fp-ts/Record";
+import { pipe } from "fp-ts/function";
 
 const dict = {
   RA: "readonlyArray",
@@ -32,7 +30,7 @@ const dict = {
 };
 export function activate(context: vscode.ExtensionContext) {
   const importFormat = vscode.workspace
-    .getConfiguration("fpts-import-helper")
+    .getConfiguration("fp-ts-import")
     .get("importFormat");
   const completion = vscode.languages.registerCompletionItemProvider(
     "typescript",
@@ -67,7 +65,7 @@ export function activate(context: vscode.ExtensionContext) {
           return completion;
         };
 
-        return f.pipe(
+        return pipe(
           dict,
           R.keys,
           A.map((mod) => addCompletion(mod))

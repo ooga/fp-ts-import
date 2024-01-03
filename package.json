@@ -20,7 +20,7 @@
     "configuration": {
       "title": "fp-ts Import",
       "properties": {
-        "fpts-import.importFormat": {
+        "fp-ts-import.importFormat": {
           "type": "string",
           "default": "module",
           "enum": [
