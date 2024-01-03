@@ -1,4 +1,6 @@
-# fp-ts Import Helper README
+# fp-ts Import README
+
+    fork from https://github.com/SilentEchoGM/fp-ts-import-helper
 
 This extension exists purely to save me the hassle of importing modules from fp-ts and aliasing them via snippets or manual typing.
 

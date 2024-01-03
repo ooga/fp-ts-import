@@ -1,6 +1,6 @@
 {
-  "name": "fpts-import-helper",
-  "displayName": "fp-ts Import Helper",
+  "name": "fp-ts-import",
+  "displayName": "fp-ts Import",
   "description": "Automatically aliases fp-ts module imports to abbreviations",
   "version": "1.0.1",
   "engines": {
@@ -18,9 +18,9 @@
   "main": "./out/main.js",
   "contributes": {
     "configuration": {
-      "title": "fp-ts Import Helper",
+      "title": "fp-ts Import",
       "properties": {
-        "fpts-import-helper.importFormat": {
+        "fpts-import.importFormat": {
           "type": "string",
           "default": "module",
           "enum": [
@@ -81,6 +81,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/SilentEchoGM/fp-ts-import-helper"
+    "url": "https://github.com/ooga/fp-ts-import-helper"
   }
 }
