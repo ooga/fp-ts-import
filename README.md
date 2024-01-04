@@ -6,9 +6,23 @@ This extension exists purely to save me the hassle of importing modules from fp-
 
 ## Features
 
-Provides code completions in TypeScript files for abbreviated names of commonly used fp-ts modules. For example, typing `A` and then a `.` will prepend `import {array as A } from 'fp-ts'` to the current file and reload intellisense to provide completions for `A.`
+Provides code completions in TypeScript files for abbreviated names of commonly used fp-ts modules. For example, typing `A` and then a `.` will prepend the current file with the abbreviated import and reload intellisense to provide completions for `A.`
 
-List of abbreviations:
+### Import style
+
+module import (default)
+
+```typescript
+import * as A from "fp-ts/Array";
+```
+
+root import
+
+```typescript
+import { Array as A } from "fp-ts";
+```
+
+### List of abbreviations
 
 - A: "array"
 - E: "either"
