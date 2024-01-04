@@ -33,7 +33,7 @@ export function activate(context: vscode.ExtensionContext) {
     .getConfiguration("fp-ts-import")
     .get("importFormat");
   const completion = vscode.languages.registerCompletionItemProvider(
-    "typescript",
+    ["typescript", "typescriptreact", "javascript", "javascriptreact"],
     {
       provideCompletionItems(
         document: vscode.TextDocument,
