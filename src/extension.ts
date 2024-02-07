@@ -28,6 +28,14 @@ const dict = {
   IO: "io",
   These: "these",
 };
+const lowercaseModuleNames = [
+  "boolean",
+  "function",
+  "number",
+  "pipeable",
+  "string",
+  "struct",
+];
 export function activate(context: vscode.ExtensionContext) {
   const importFormat = vscode.workspace
     .getConfiguration("fp-ts-import")
@@ -41,8 +49,9 @@ export function activate(context: vscode.ExtensionContext) {
         token: vscode.CancellationToken,
         context: vscode.CompletionContext
       ) {
-        const addCompletion = (mod: keyof typeof dict) => {
-          const completion = new vscode.CompletionItem(mod);
+        const addCompletion = (alias: keyof typeof dict) => {
+          const rootImportName = dict[alias];
+          const completion = new vscode.CompletionItem(alias);
           completion.additionalTextEdits = [
             new vscode.TextEdit(
               new vscode.Range(
@@ -50,13 +59,17 @@ export function activate(context: vscode.ExtensionContext) {
                 new vscode.Position(0, 0)
               ),
               importFormat === "module"
-                ? `import * as ${mod} from "fp-ts/${capitalize(dict[mod])}";\n`
-                : `import { ${dict[mod]} as ${mod} } from "fp-ts";\n`
+                ? `import * as ${alias} from "fp-ts/${
+                    lowercaseModuleNames.includes(rootImportName)
+                      ? rootImportName
+                      : capitalize(rootImportName)
+                  }";\n`
+                : `import { ${rootImportName} as ${alias} } from "fp-ts";\n`
             ),
           ];
           completion.kind = vscode.CompletionItemKind.Module;
           completion.commitCharacters = ["."];
-          completion.insertText = mod;
+          completion.insertText = alias;
           completion.command = {
             command: "editor.action.triggerSuggest",
             title: "Re-trigger completions...",
@@ -65,11 +78,7 @@ export function activate(context: vscode.ExtensionContext) {
           return completion;
         };
 
-        return pipe(
-          dict,
-          R.keys,
-          A.map((mod) => addCompletion(mod))
-        );
+        return pipe(dict, R.keys, A.map(addCompletion));
       },
     }
   );
